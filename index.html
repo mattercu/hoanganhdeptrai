@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chúc mừng 20/10 🌸</title>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<style>
+  :root{
+    --pink1:#ffd7ea;
+    --pink2:#ffecf8;
+    --accent:#ff4d8a;
+    --accent-2:#ff9ac4;
+    --glass: rgba(255,255,255,0.92);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background: linear-gradient(135deg,var(--pink1),var(--pink2));
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    display:flex;align-items:center;justify-content:center;
+    color:#3a2a34;padding:18px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    width:100%;max-width:980px;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.98));
+    border-radius:20px;padding:28px;box-shadow: 0 20px 60px rgba(140,50,100,0.08); position:relative; overflow:hidden;
+  }
+
+  .heading{
+    display:flex;gap:14px;align-items:center;margin-bottom:8px;
+  }
+  .logo{
+    width:74px;height:74px;border-radius:16px;background:linear-gradient(135deg,#fff0f6,#ffdff0);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:26px;
+    box-shadow: 0 8px 22px rgba(255,90,150,0.12);
+  }
+  h1{font-size:24px;color:var(--accent);margin:0}
+  p.sub{color:#6b4a63;margin-top:6px;font-weight:60}
+
+  /* Main stage */
+  .stage{display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:12px}
+  .left{flex:1 1 420px;min-width:260px}
+  .right{width:360px;min-width:240px;height:420px;border-radius:16px;background:linear-gradient(180deg,#fffafc,#fff0f7);display:flex;align-items:center;justify-content:center;position:relative;box-shadow: 0 18px 50px rgba(160,60,120,0.08)}
+  .right .heart{position:absolute;top:18px;right:18px;font-size:28px}
+
+  /* Question center */
+  .question-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:34px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.82));box-shadow: 0 12px 30px rgba(120,40,80,0.06)}
+  .question-text{font-size:22px;color:#5a3750;font-weight:800;margin-bottom:18px;text-align:center}
+  .buttons{display:flex;gap:18px;align-items:center}
+  .btn{
+    border:none;padding:14px 26px;border-radius:12px;font-weight:800;font-size:16px;cursor:pointer;
+    box-shadow: 0 10px 28px rgba(140,50,100,0.08); transition: transform .18s ease, box-shadow .18s ease, width .18s ease, height .18s ease;
+    user-select:none;
+  }
+  .btn:active{transform:scale(.98)}
+  .btn-no{background:linear-gradient(180deg,#fff7fb,#ffeef6); color:#b04a7f;border:2px solid rgba(176,74,127,0.08)}
+  .btn-yes{background:linear-gradient(90deg,#ff6b9a,#ff8cc6); color:white;border:0}
+
+  /* Loading overlay */
+  .loading-screen{position:fixed;inset:0;background:linear-gradient(180deg, rgba(10,10,12,0.55), rgba(10,10,12,0.85));display:none;align-items:center;justify-content:center;z-index:1300;backdrop-filter: blur(6px)}
+  .loading-card{width:90%;max-width:720px;background:var(--glass);padding:26px;border-radius:14px;text-align:center;box-shadow: 0 30px 80px rgba(10,10,12,0.18)}
+  .loading-title{font-family:"Courier New", monospace;font-weight:800;color:#7b4b66;margin-bottom:12px}
+  .progress-outer{width:100%;height:18px;background:rgba(0,0,0,0.06);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.5)}
+  .progress-inner{height:100%;width:0%;background:linear-gradient(90deg,#ff6b9a,#ffd36f,#ffd3f0);transition:width .12s linear}
+
+  /* Message screen */
+  .message-screen{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:1500}
+  .message-inner{width:92%;max-width:820px;padding:26px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.995));text-align:center;box-shadow: 0 30px 80px rgba(160,60,120,0.08)}
+  .msg-title{font-size:36px;color:#ff4d8a;font-weight:900;margin-bottom:6px}
+  .msg-sub{color:#6b4a63;margin-bottom:12px}
+  .wish-lines{font-size:18px;color:#5a3a52;line-height:1.7;margin-bottom:12px;font-weight:600}
+
+  /* particles layer */
+  .particles{position:fixed;inset:0;pointer-events:none;z-index:1400;overflow:hidden}
+
+  /* NEW STYLES FOR SPECIAL SCREENS */
+  .special-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,12,0.95), rgba(10,10,12,0.98));
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(8px);
+  }
+
+  .special-inner {
+    width: 90%;
+    max-width: 800px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.98));
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(255,105,180,0.2);
+  }
+
+  .romantic-text {
+    font-size: 32px;
+    color: #ff4d8a;
+    font-weight: 900;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    text-shadow: 0 4px 12px rgba(255,77,138,0.3);
+  }
+
+  .gif-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(255,77,138,0.25);
+  }
+
+  .gif-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  /* small responsive */
+  @media (max-width:760px){
+    .stage{flex-direction:column-reverse;align-items:center}
+    .right{width:92%;height:340px}
+    .question-text{font-size:20px}
+    .romantic-text {font-size: 24px;}
+  }
+<</style>
+</head>
+<body>
+  <div class="wrap" role="main" aria-label="Chúc mừng 20/10">
+    <div class="heading">
+      <div class="logo">20</div>
+      <div>
+        <!-- Đã xóa thẻ <h1> ở đây -->
+        <p class="sub">Một món quà ảo nhỏ nè — nhấn trả lời nhé!</p>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="left">
+        <!-- New main question area (replace previous text as requested) -->
+        <div class="question-wrap" aria-labelledby="qtext">
+          <div id="qtext" class="question-text">Bạn trước màn hình có xinh không nè 🫣?</div>
+          <div class="buttons" role="group" aria-label="Trả lời">
+            <button id="btnNo" class="btn btn-no" aria-pressed="false">không</button>
+            <button id="btnYes" class="btn btn-yes" aria-pressed="false">có</button>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;color:#7d5a78;font-size:13px">
+          Wêb sai by Hoàng Anh =))
+        </div>
+      </div>
+
+      <div class="right" aria-hidden="true">
+        <div class="heart">💘</div>
+        <div style="text-align:center;padding:18px">
+          <div style="font-size:16px;color:#6b4a63;font-weight:700">Messenger✉️</div>
+          <div style="margin-top:8px;color:#8b4e6e">Thông Báo : Có 1 Tin Nhắn Từ Hoàngg Anh</div>
+          <div style="margin-top:14px;font-size:13px;color:#7d5a78"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+  <!-- loading screen -->
+  <div id="loadingScreen" class="loading-screen" role="status" aria-hidden="true">
+    <div class="loading-card">
+      <div class="loading-title" id="loadingMsg">đang Hack Dữ Liệu Điện Thoại =)) Loading...</div>
+      <div style="height:10px"></div>
+      <div class="progress-outer" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-inner" id="progressBar"></div>
+      </div>
+      <div style="height:10px"></div>
+      <div style="font-size:13px;color:#7c5876;margin-top:10px">Đợi xíu nha, tớ đang bọc quà cho cậu 🎁</div>
+    </div>
+  </div>
+
+  <!-- message screen (final) -->
+  <div id="messageScreen" class="message-screen" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="message-inner" id="messageInner">
+      <div style="font-size:44px">🌸</div>
+      <div class="msg-title">Chúc mừng 20/10!</div>
+      <div class="msg-sub">Gửi đến cô gái đặc biệt — người khiến ngày thường cũng rạng rỡ , mà cỡ mặt trời cũng phải bỡ ngỡ vì Cậu🤓</div>
+
+      <div class="wish-lines" id="wishLines">
+        <div>💐 Chúc cậu luôn xinh tươi như hoa,</div>
+        <div>✨ mỗi ngày đều ngập tràn nụ cười và niềm vui,</div>
+        <div>🌟 mọi dự định học hành, công việc đều thuận lợi,</div>
+        <div>💖 và luôn gặp may mắn trong chuyện tình cảm nữa nhé!</div>
+      </div>
+
+      <div style="font-size:13px;color:#7c5876">— Gửi từ Bạn Hanh Nhìn Tật =))🌷</div>
+    </div>
+  </div>
+
+  <!-- NEW SPECIAL SCREENS -->
+  <div id="specialScreen1" class="special-screen" aria-hidden="true">
+    <div class="special-inner pulse">
+      <div class="romantic-text">
+        trái đất thì có mặt trời 🌞<br>
+        còn anh thì có 1 đời bên em 💖
+      </div>
+      <div style="font-size: 48px; margin-top: 20px;">✨</div>
+    </div>
+  </div>
+
+  <div id="specialScreen2" class="special-screen" aria-hidden="true">
+    <div class="special-inner">
+      <div class="gif-container">
+        <img src="https://media.giphy.com/media/lxxOGaDRk4f7R5TkBd/giphy.gif" alt="Celebration GIF">
+      </div>
+      <div style="margin-top: 20px; color: #ff4d8a; font-weight: 700; font-size: 18px;">
+        Đang tận hưởng khoảnh khắc này... 🎉
+      </div>
+    </div>
+  </div>
+
+  <!-- particles (tim + confetti) -->
+  <div id="particles" class="particles" aria-hidden="true"></div>
+
+  <!-- background audio (Catbox) -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="https://files.catbox.moe/tqi6f7.mov" />
+  </audio>
+
+  <!-- NEW AUDIO ELEMENTS -->
+  <audio id="specialAudio1" preload="auto">
+    <source src="https://files.catbox.moe/39azma.mp3" />
+  </audio>
+
+  <audio id="specialAudio2" preload="auto">
+    <source src="https://files.catbox.moe/t0cprg.mp4" />
+  </audio>
+
+<script>
+  // Elements
+  const btnNo = document.getElementById('btnNo');
+  const btnYes = document.getElementById('btnYes');
+  const loadingScreen = document.getElementById('loadingScreen');
+  const progressBar = document.getElementById('progressBar');
+  const loadingMsg = document.getElementById('loadingMsg');
+  const messageScreen = document.getElementById('messageScreen');
+  const messageInner = document.getElementById('messageInner');
+  const particles = document.getElementById('particles');
+  const bgAudio = document.getElementById('bgAudio');
+
+  // NEW ELEMENTS
+  const specialScreen1 = document.getElementById('specialScreen1');
+  const specialScreen2 = document.getElementById('specialScreen2');
+  const specialAudio1 = document.getElementById('specialAudio1');
+  const specialAudio2 = document.getElementById('specialAudio2');
+
+  // state for scaling yes button
+  let yesScale = 1;
+  const maxScale = 6; // cap to avoid overflow on small screens
+  const doubleOnNo = true; // user wanted "gấp đôi"
+  // track number of "no" presses
+  let noCount = 0;
+
+  // Try autoplay once
+  async function tryAutoPlay() {
+    try {
+      bgAudio.volume = 0.72;
+      await bgAudio.play();
+      console.log('Audio autoplay success');
+    } catch(e) {
+      console.log('Autoplay blocked - will play on user gesture', e);
+    }
+  }
+  tryAutoPlay();
+
+  // animate shrink for "no" and grow for "yes"
+  btnNo.addEventListener('click', function(){
+    noCount++;
+    // shrink "no" slightly each click (min 0.4)
+    btnNo.style.transform = 'scale(0.6)';
+    btnNo.style.transition = 'transform 180ms ease';
+    setTimeout(()=> {
+      // reduce a bit more for repeated clicks
+      const baseShrink = Math.max(0.18, 1 - 0.12*noCount);
+      btnNo.style.transform = `scale(${baseShrink})`;
+    }, 200);
+
+    // grow "yes" (double if requested)
+    if (doubleOnNo) {
+      yesScale = Math.min(maxScale, yesScale * 2);
+    } else {
+      yesScale = Math.min(maxScale, yesScale + 0.4);
+    }
+    // animate growth
+    btnYes.style.transform = `scale(${yesScale})`;
+    btnYes.style.transition = 'transform 260ms cubic-bezier(.2,.9,.3,1)';
+    // subtle pulse and shadow
+    btnYes.style.boxShadow = '0 18px 48px rgba(255,80,150,0.18)';
+
+    // small playful wiggle on no to keep it cute
+    btnNo.animate([
+      { transform: 'translateX(0px) rotate(0deg)' },
+      { transform: 'translateX(-6px) rotate(-6deg)' },
+      { transform: 'translateX(0px) rotate(0deg)' }
+    ], {duration: 380, easing: 'ease-out'});
+  });
+
+  // NEW FUNCTION FOR SPECIAL SEQUENCE
+  async function startSpecialSequence() {
+    // Stop background music first
+    bgAudio.pause();
+    bgAudio.currentTime = 0;
+
+    // Fade out main content
+    const wrap = document.querySelector('.wrap');
+    wrap.style.transition = 'opacity 1.2s ease';
+    wrap.style.opacity = '0';
+
+    // Wait for fade out then show first special screen
+    setTimeout(() => {
+      specialScreen1.style.display = 'flex';
+      specialScreen1.classList.add('fade-in');
+      
+      // Play first special audio
+      specialAudio1.volume = 0.8;
+      specialAudio1.play().catch(e => console.log('Special audio 1 play error:', e));
+
+      // After 4 seconds, move to next step
+      setTimeout(() => {
+        specialScreen1.style.display = 'none';
+        specialScreen2.style.display = 'flex';
+        specialScreen2.classList.add('fade-in');
+
+        // Play second special audio
+        specialAudio2.volume = 0.8;
+        specialAudio2.play().catch(e => console.log('Special audio 2 play error:', e));
+
+        // After 8 seconds, move to loading sequence
+        setTimeout(() => {
+          specialScreen2.style.display = 'none';
+          
+          // Restore main content and start original loading
+          wrap.style.opacity = '1';
+          
+          // Restart background music
+          bgAudio.play().catch(e => console.log('Bg audio play error:', e));
+          
+          // Start the original loading sequence
+          startLoadingSequence();
+        }, 8000);
+      }, 4000);
+    }, 1200);
+  }
+
+  // If user clicks 'yes' -> go to special sequence instead of loading
+  btnYes.addEventListener('click', async function(){
+    // ensure audio plays
+    try{ await bgAudio.play(); } catch(e){ console.log('play blocked', e) }
+    startSpecialSequence();
+  });
+
+  // Allow keyboard activation (accessibility)
+  [btnNo, btnYes].forEach(btn => {
+    btn.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') btn.click();
+    });
+  });
+
+  // Loading logic
+  function startLoadingSequence(){
+    // hide main interactive area (slightly dim)
+    document.querySelector('.wrap').style.filter = 'brightness(.85)';
+    loadingScreen.style.display = 'flex';
+    loadingScreen.setAttribute('aria-hidden','false');
+
+    // cycle messages
+    const msgs = [
+      'đang gói quà xinh xắn...',
+      'đang thả tim nhỏ nhỏ...',
+      'đang bọc hoa ảo...',
+      'đang soạn lời chúc dễ thương...',
+      'sắp xong rồi nè...'
+    ];
+    let idx = 0;
+    const msgTimer = setInterval(()=> {
+      loadingMsg.textContent = msgs[idx % msgs.length];
+      idx++;
+    }, 700);
+
+    // fill progress to 100% smoothly
+    const total = 3600 + Math.random()*900; // ~3.6s-4.5s
+    const start = performance.now();
+    function tick(now){
+      const elapsed = now - start;
+      const pct = Math.min(100, (elapsed/total)*100);
+      progressBar.style.width = pct + '%';
+      progressBar.parentElement.setAttribute('aria-valuenow', Math.round(pct));
+      if (pct < 100) {
+        requestAnimationFrame(tick);
+      } else {
+        clearInterval(msgTimer);
+        setTimeout(()=> {
+          // fade to dark then show message
+          loadingScreen.style.display = 'none';
+          darkThenReveal();
+        }, 500);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // darken then reveal message + spawn particles
+  function darkThenReveal(){
+    // darken whole page then reveal
+    const wrap = document.querySelector('.wrap');
+    wrap.animate([
+      { filter: 'brightness(0.9)' },
+      { filter: 'brightness(0.25)' }
+    ], { duration: 420, fill: 'forwards', easing: 'ease-out' });
+
+    // small delay then reveal message
+    setTimeout(()=> {
+      // show message screen
+      messageScreen.style.display = 'flex';
+      messageScreen.setAttribute('aria-hidden','false');
+      // quick brighten transition of message inner
+      messageInner.animate([
+        { transform: 'scale(.96)', opacity: 0 },
+        { transform: 'scale(1.02)', opacity: 1 }
+      ], { duration: 700, easing: 'cubic-bezier(.2,.9,.3,1)' });
+
+      // spawn particles (tim + confetti) repeatedly for a bit
+      spawnParticlesBurst();
+      const bursts = [500, 1100, 1700, 2300];
+      bursts.forEach((t, i) => setTimeout(spawnParticlesBurst, t));
+      // restore wrap brightness softly
+      setTimeout(()=> wrap.style.filter = '', 1400);
+    }, 420);
+  }
+
+  // create particle burst of hearts + confetti
+  function spawnParticlesBurst(){
+    const emojis = ['💖','💕','🌸','🌷','🎀','✨','💘','💝'];
+    const count = 28;
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    for (let i=0;i<count;i++){
+      const el = document.createElement('div');
+      el.style.position = 'absolute';
+      el.style.willChange = 'transform,opacity';
+      el.style.pointerEvents = 'none';
+      el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      const size = (Math.random()*22 + 14) + 'px';
+      el.style.fontSize = size;
+      const left = Math.random()*100;
+      el.style.left = left + 'vw';
+      const delay = Math.random()*200;
+      const dur = 2000 + Math.random()*2200;
+      el.style.opacity = 0;
+      particles.appendChild(el);
+
+      // animate using setTimeout + requestAnimationFrame for better control
+      setTimeout(()=> {
+        const start = performance.now();
+        function frame(now){
+          const t = (now - start)/dur;
+          if (t < 1){
+            // vertical movement from -10vh to 110vh
+            const y = (-10 + t*(120)) + 'vh';
+            el.style.transform = `translateY(${y}) rotate(${t*720}deg) scale(${1 - t*0.45})`;
+            el.style.opacity = String(Math.min(1, t*1.4));
+            requestAnimationFrame(frame);
+          } else {
+            el.style.opacity = '0';
+            if (el && el.parentNode) el.parentNode.removeChild(el);
+          }
+        }
+        requestAnimationFrame(frame);
+      }, delay);
+    }
+  }
+
+  // Try to resume audio on any user gesture too
+  ['click','touchstart','keydown'].forEach(ev => {
+    document.addEventListener(ev, function resume(){ 
+      if (bgAudio.paused) bgAudio.play().catch(()=>{});
+      document.removeEventListener(ev, resume);
+    }, {passive:true});
+  });
+
+  // close message on click (optional)
+  messageScreen.addEventListener('click', function(){
+    // keep message visible by default per your request; here click will not close
+    // but we'll add a subtle ripple to indicate interaction
+    messageInner.animate([
+      { transform: 'scale(1)' },
+      { transform: 'scale(0.995)' },
+      { transform: 'scale(1)' }
+    ], { duration: 260, easing: 'ease-out' });
+  });
+
+  // Accessibility: Enter key to click yes if focused
+  btnYes.addEventListener('keyup', (e) => { if (e.key === 'Enter') btnYes.click(); });
+  btnNo.addEventListener('keyup', (e) => { if (e.key === 'Enter') btnNo.click(); });
+
+  // Helpful: ensure the "yes" button doesn't overflow the screen (responsive)
+  // If scale becomes too large we can bring it back a bit for UX
+  const resizeObserver = new ResizeObserver(() => {
+    // keep yesScale reasonable relative to viewport width
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    if (yesScale > 1 && vw < 420 && yesScale > 3) {
+      yesScale = Math.max(1.6, yesScale/1.6);
+      btnYes.style.transform = `scale(${yesScale})`;
+    }
+  });
+  resizeObserver.observe(document.documentElement);
+
+  // make initial micro animation to entice click
+  setTimeout(()=> {
+    btnYes.animate([
+      { transform: 'translateY(0px) scale(1)' },
+      { transform: 'translateY(-6px) scale(1.02)' },
+      { transform: 'translateY(0px) scale(1)' }
+    ], { duration: 900, iterations: Infinity, easing: 'ease-in-out' });
+  }, 600);
+</script>
+</body>
+</html>
